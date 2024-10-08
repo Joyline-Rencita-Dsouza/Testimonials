@@ -1,3 +1,10 @@
+// function toggleMenu() {
+//     const menu = document.querySelector(".menu-links");
+//     const icon = document.querySelector(".hamburger-icon");
+//     menu.classList.toggle("open");
+//     icon.classList.toggle("open");
+// }
+
 const helpButton = document.getElementById('helpButton');
 const helpPopup = document.getElementById('helpPopup');
 
@@ -72,14 +79,39 @@ function showReviewPopup() {
 function closeReviewPopup() {
     reviewPopup.style.display = 'none';
     popupVisible = false;
-
     // Stop the popups from reappearing after closing
     clearInterval(reviewInterval); 
 }
-
 // Show the first review popup after 2 seconds
 setTimeout(() => {
     showReviewPopup();
     // Start the rotation immediately after showing the first review
     reviewInterval = setInterval(showReviewPopup, 5000); // Store the interval so we can clear it
 }, 2000);
+
+document.addEventListener('DOMContentLoaded', () => {
+    const menuIcon = document.querySelector('.menu-icon');
+    const navLinks = document.querySelector('.nav-links');
+
+    menuIcon.addEventListener('click', () => {
+        navLinks.classList.toggle('active');
+    });
+});
+
+// Toggle navigation visibility on mobile
+const mobileNavToggle = document.querySelector('.mobile-nav-toggle');
+const navLinks = document.querySelector('.nav-links');
+const navButtons = document.querySelector('.nav-buttons');
+
+mobileNavToggle.addEventListener('click', () => {
+  navLinks.classList.toggle('show');
+  navButtons.classList.toggle('show');
+
+  // Change ☰ to X when clicked
+  if (mobileNavToggle.textContent === '☰') {
+    mobileNavToggle.textContent = '✖';  // Change to X
+  } else {
+    mobileNavToggle.textContent = '☰';  // Revert to ☰
+  }
+});
+
